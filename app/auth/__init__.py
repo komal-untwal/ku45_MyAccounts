@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, redirect, url_for, flash,current_app
+from flask import Blueprint, render_template, redirect, url_for, flash, current_app, abort
 from flask_login import login_user, login_required, logout_user, current_user
+from jinja2 import TemplateNotFound
 from werkzeug.security import generate_password_hash
 
 from app.auth.decorators import admin_required
@@ -32,6 +33,7 @@ def register():
             return redirect(url_for('auth.login'), 302)
     return render_template('register.html', form=form)
 
+
 @auth.route('/login', methods=['POST', 'GET'])
 def login():
     form = login_form()
@@ -51,6 +53,7 @@ def login():
             return redirect(url_for('auth.dashboard'))
     return render_template('login.html', form=form)
 
+
 @auth.route("/logout")
 @login_required
 def logout():
@@ -63,11 +66,26 @@ def logout():
     return redirect(url_for('auth.login'))
 
 
-
-@auth.route('/dashboard')
+@auth.route('/dashboard', methods=['GET'], defaults={"page": 1})
+@auth.route('/dashboard/<int:page>', methods=['GET'])
 @login_required
-def dashboard():
-    return render_template('dashboard.html')
+def dashboard(page):
+    page = page
+    per_page = 1000
+    # pagination = Location.query.filter_by(users=current_user.id).paginate(page, per_page, error_out=False)
+    # pagination = Location.query.all(users=current_user.id).paginate(page, per_page, error_out=False)
+
+    # pagination = db.session.query(Location, User).filter(location_user.location_id == Location.id,
+    #                                   location_user.user_id == User.id).order_by(Location.location_id).all()
+
+    # pagination = User.query.join(location_user).filter(location_user.user_id == current_user.id).paginate()
+
+    data = current_user.songs
+
+    try:
+        return render_template('dashboard.html', data=data)
+    except TemplateNotFound:
+        abort(404)
 
 
 @auth.route('/profile', methods=['POST', 'GET'])
@@ -97,8 +115,7 @@ def edit_account():
     return render_template('manage_account.html', form=form)
 
 
-
-#You should probably move these to a new Blueprint to clean this up.  These functions below are for user management
+# You should probably move these to a new Blueprint to clean this up.  These functions below are for user management
 
 @auth.route('/users')
 @login_required
@@ -169,8 +186,3 @@ def delete_user(user_id):
     db.session.commit()
     flash('User Deleted', 'success')
     return redirect(url_for('auth.browse_users'), 302)
-
-
-
-
-
