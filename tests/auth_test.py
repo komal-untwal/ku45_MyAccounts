@@ -1,4 +1,7 @@
 """This test the homepage"""
+from flask_login import current_user
+from app import db
+from app.db.models import User, Song
 
 
 def test_request_main_menu_links(client):
@@ -26,3 +29,20 @@ def test_index_page_logged_in(client):
         res = client.get('/')
         assert res.status_code == 200
 
+
+def test_user_registration(client):
+    """ This ensures user can register"""
+    with client:
+        response = client.post('register/', data=dict(email='michael@realpython.com',
+                                                      password='python', confirm='python'
+                                                      ), follow_redirects=True)
+        res = client.get('/login')
+        assert res.status_code == 200
+
+
+def test_logged_in_user_dashboard_access(client):
+    """ This ensures logged_in user can access dashboard"""
+    with client:
+        client.post('/login', data=dict(email='test@gmail.com', password='test'), follow_redirects=True)
+        res = client.get('/dashboard')
+        assert res.status_code == 302
