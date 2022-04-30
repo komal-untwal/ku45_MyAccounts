@@ -1,11 +1,15 @@
 import logging
 import os
+import time
+import datetime
 from logging.config import dictConfig
 
 import flask
-from flask import request, current_app
+from flask import request, current_app, g
 
 # from app.logging_config.log_formatters import RequestFormatter
+from rfc3339 import rfc3339
+
 from app import config
 
 log_con = flask.Blueprint('log_con', __name__)
@@ -23,6 +27,34 @@ def after_request_logging(response):
         return response
     elif request.path.startswith('/bootstrap'):
         return response
+
+    now = time.time()
+    dt = datetime.datetime.fromtimestamp(now)
+    timestamp = rfc3339(dt, utc=True)
+    ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+
+    log_params = [
+        ('method', request.method),
+        ('path', request.path),
+        ('status', response.status_code),
+        ('time', timestamp),
+        ('ip', ip),
+    ]
+
+    request_id = request.headers.get('X-Request-ID')
+    if request_id:
+        log_params.append(('request_id', request_id))
+
+    parts = []
+    for name, value in log_params:
+        part = name + ': ' + str(value) + ', '
+        parts.append(part)
+    line = " ".join(parts)
+    # this triggers a log entry to be created with whatever is in the line variable
+
+    log = logging.getLogger('request')
+    log.info('This is request info log!' + line)
+
     return response
 
 
@@ -80,6 +112,13 @@ LOGGING_CONFIG = {
             'maxBytes': 10000000,
             'backupCount': 5,
         },
+        'file.handler.csvUploads': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'formatter': 'standard',
+            'filename': os.path.join(config.Config.LOG_DIR, 'csvUploads.log'),
+            'maxBytes': 10000000,
+            'backupCount': 5,
+        },
         'file.handler.sqlalchemy': {
             'class': 'logging.handlers.RotatingFileHandler',
             'formatter': 'standard',
@@ -121,8 +160,18 @@ LOGGING_CONFIG = {
             'level': 'DEBUG',
             'propagate': False
         },
+        'request': {  # if __name__ == '__main__'
+            'handlers': ['file.handler.request'],
+            'level': 'DEBUG',
+            'propagate': False
+        },
         'myerrors': {  # if __name__ == '__main__'
             'handlers': ['file.handler.errors'],
+            'level': 'DEBUG',
+            'propagate': False
+        },
+        'csvUploads': {  # if __name__ == '__main__'
+            'handlers': ['file.handler.csvUploads'],
             'level': 'DEBUG',
             'propagate': False
         },
