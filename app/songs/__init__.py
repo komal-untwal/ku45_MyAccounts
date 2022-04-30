@@ -43,7 +43,7 @@ def songs_upload():
         with open(filepath) as file:
             csv_file = csv.DictReader(file)
             for row in csv_file:
-                list_of_songs.append(Song(row['Name'], row['Artist']))
+                list_of_songs.append(Song(row['Name'], row['Artist'], row['Year'], row['Genre']))
 
         current_user.songs = list_of_songs
         db.session.commit()
