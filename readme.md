@@ -9,6 +9,15 @@
 
 * [Developmental Deployment](https://ku45-proj3-dev.herokuapp.com/)
 
+
+## Project Description
+This application allows users to log in and upload a CSV of their song playlist and have it displayed on the dashboard.
+Functionality Implemented: 
+*log files generation with an entry for each time a user uploads a CSV playlist & for each request response with details. 
+*A database record is generated related to each user record for each song in their playlist & fields includes song's title, artist, year, and genre. 
+*Testcases for user login, registration, file upload, dashboard access for a logged-in user, denied access to the dashboard & CSV file upload for non-authenticated users are implemented.
+
+
 ## Setting up CI/CD
 
 The result of this will be that when you create a pull request to merge a branch to master, it will deploy to your
@@ -55,4 +64,4 @@ app/dyno.
 * https://wtforms.readthedocs.io/en/3.0.x/
 * https://bootstrap-flask.readthedocs.io/en/stable/
 * https://flask-sqlalchemy.palletsprojects.com/en/2.x/
-* test
+
