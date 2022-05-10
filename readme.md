@@ -1,13 +1,22 @@
 # Project Setup
 
-[![Production Workflow](https://github.com/komal-untwal/ku45_proj3/actions/workflows/prod.yml/badge.svg)](https://github.com/komal-untwal/ku45_proj3/actions/workflows/prod.yml)
+[![Production Workflow](https://github.com/komal-untwal/ku45_MyAccounts/actions/workflows/prod.yml/badge.svg)](https://github.com/komal-untwal/ku45_MyAccounts/actions/workflows/prod.yml)
 
-* [Production Deployment](https://ku45-proj3-prod.herokuapp.com/)
+* [Production Deployment](https://my-accounts-prod.herokuapp.com/)
 
 
-[![Development Workflow](https://github.com/komal-untwal/ku45_proj3/actions/workflows/dev.yml/badge.svg)](https://github.com/komal-untwal/ku45_proj3/actions/workflows/dev.yml)
+[![Development Workflow](https://github.com/komal-untwal/ku45_MyAccounts/actions/workflows/dev.yml/badge.svg)](https://github.com/komal-untwal/ku45_MyAccounts/actions/workflows/dev.yml)
 
-* [Developmental Deployment](https://ku45-proj3-dev.herokuapp.com/)
+* [Developmental Deployment](https://my-accounts-dev.herokuapp.com/)
+
+
+## Project Description
+This application allows users to log in and upload a CSV of their song playlist and have it displayed on the dashboard.
+Functionality Implemented: 
+*log files generation with an entry for each time a user uploads a CSV playlist & for each request response with details. 
+*A database record is generated related to each user record for each song in their playlist & fields includes song's title, artist, year, and genre. 
+*Testcases for user login, registration, file upload, dashboard access for a logged-in user, denied access to the dashboard & CSV file upload for non-authenticated users are implemented.
+
 
 ## Setting up CI/CD
 
@@ -55,4 +64,4 @@ app/dyno.
 * https://wtforms.readthedocs.io/en/3.0.x/
 * https://bootstrap-flask.readthedocs.io/en/stable/
 * https://flask-sqlalchemy.palletsprojects.com/en/2.x/
-* **test
+
