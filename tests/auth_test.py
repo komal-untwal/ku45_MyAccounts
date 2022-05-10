@@ -1,7 +1,7 @@
 """This test the homepage"""
 from flask_login import current_user
 from app import db
-from app.db.models import User, Song
+from app.db.models import User, Accounts
 
 
 def test_request_main_menu_links(client):

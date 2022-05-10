@@ -2,7 +2,7 @@ import io
 import logging
 
 from app import db
-from app.db.models import User, Song
+from app.db.models import User, Accounts
 from faker import Faker
 
 
@@ -12,6 +12,6 @@ def test_csv_upload(client):
     data = {
         'image': (io.BytesIO(b"some initial text data"), file_name)
     }
-    response = client.post('/songs/upload', data=data)
+    response = client.post('/accounts/upload', data=data)
     log.info('csv file upload test!')
     assert response.status_code == 400

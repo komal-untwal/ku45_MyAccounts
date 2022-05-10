@@ -1,13 +1,13 @@
 # Project Setup
 
-[![Production Workflow](https://github.com/komal-untwal/ku45_proj3/actions/workflows/prod.yml/badge.svg)](https://github.com/komal-untwal/ku45_proj3/actions/workflows/prod.yml)
+[![Production Workflow](https://github.com/komal-untwal/ku45_MyAccounts/actions/workflows/prod.yml/badge.svg)](https://github.com/komal-untwal/ku45_proj3/actions/workflows/prod.yml)
 
-* [Production Deployment](https://ku45-proj3-prod.herokuapp.com/)
+* [Production Deployment](https://my-accounts-prod.herokuapp.com/)
 
 
-[![Development Workflow](https://github.com/komal-untwal/ku45_proj3/actions/workflows/dev.yml/badge.svg)](https://github.com/komal-untwal/ku45_proj3/actions/workflows/dev.yml)
+[![Development Workflow](https://github.com/komal-untwal/ku45_MyAccounts/actions/workflows/dev.yml/badge.svg)](https://github.com/komal-untwal/ku45_proj3/actions/workflows/dev.yml)
 
-* [Developmental Deployment](https://ku45-proj3-dev.herokuapp.com/)
+* [Developmental Deployment](https://my-accounts-dev.herokuapp.com/)
 
 
 ## Project Description

@@ -80,7 +80,7 @@ def dashboard(page):
 
     # pagination = User.query.join(location_user).filter(location_user.user_id == current_user.id).paginate()
 
-    data = current_user.songs
+    data = current_user.accounts
 
     try:
         return render_template('dashboard.html', data=data)

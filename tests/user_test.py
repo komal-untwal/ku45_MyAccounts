@@ -1,7 +1,7 @@
 import logging
 
 from app import db
-from app.db.models import User, Song
+from app.db.models import User, Accounts
 from faker import Faker
 
 
@@ -9,7 +9,7 @@ def test_adding_user(application):
     log = logging.getLogger("myApp")
     with application.app_context():
         assert db.session.query(User).count() == 0
-        assert db.session.query(Song).count() == 0
+        assert db.session.query(Accounts).count() == 0
         # showing how to add a record
         # create a record
         user = User('keith@webizly.com', 'testtest')
@@ -25,19 +25,19 @@ def test_adding_user(application):
         # asserting that the user retrieved is correct
         assert user.email == 'keith@webizly.com'
         # this is how you get a related record ready for insert
-        user.songs = [Song("test", "smap", "2021", "Dance"), Song("test2", "te", "2022", "Dance")]
-        # commit is what saves the songs
+        user.accounts = [Accounts(2000, "Credit"), Accounts(-1000, "debit")]
+        # commit is what saves the accounts
         db.session.commit()
-        assert db.session.query(Song).count() == 2
-        song1 = Song.query.filter_by(title='test').first()
-        assert song1.title == "test"
-        # changing the title of the song
-        song1.title = "SuperSongTitle"
+        assert db.session.query(Accounts).count() == 2
+        account1 = Accounts.query.filter_by(amount=2000).first()
+        assert account1.amount == 2000
+        # changing the amount
+        account1.amount = 500
         # saving the new title of the song
         db.session.commit()
-        song2 = Song.query.filter_by(title='SuperSongTitle').first()
-        assert song2.title == "SuperSongTitle"
+        account2 = Accounts.query.filter_by(amount=500).first()
+        assert account2.amount == 500
         # checking cascade delete
         db.session.delete(user)
         assert db.session.query(User).count() == 0
-        assert db.session.query(Song).count() == 0
+        assert db.session.query(Accounts).count() == 0
