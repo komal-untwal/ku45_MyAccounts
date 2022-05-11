@@ -25,7 +25,7 @@ def test_adding_user(application):
         # asserting that the user retrieved is correct
         assert user.email == 'keith@webizly.com'
         # this is how you get a related record ready for insert
-        user.accounts = [Accounts(2000, "Credit"), Accounts(-1000, "debit")]
+        user.accounts = [Accounts(2000, "CREDIT"), Accounts(-1000, "DEBIT")]
         # commit is what saves the accounts
         db.session.commit()
         assert db.session.query(Accounts).count() == 2
