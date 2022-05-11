@@ -69,11 +69,7 @@ def accounts_upload():
                 transaction = Accounts(row['\ufeffAMOUNT'], row['TYPE'])
                 list_of_accounts.append(transaction)
                 db.session.add(transaction)
-                if transaction.trans_type == 'CREDIT':
-                    balance = balance + float(transaction.amount)
-                if transaction.trans_type == 'DEBIT':
-                    balance = balance + float(transaction.amount)
-                #balance = balance + transaction.amount
+                balance = balance + float(transaction.amount)
 
         user.accounts = list_of_accounts
         user.balance = balance
