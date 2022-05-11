@@ -9,7 +9,7 @@
 
                 <a href="{{ url_for("accounts.accounts_upload") }}" class="btn col-3 mb-5 btn-info" role="button">Upload Accounts</a>
 
-        <h2>Total Balance:</h2>
+        <h2>Current Balance: {{ balance }} </h2>
         {{ render_table(data) }}
         {% from 'bootstrap5/pagination.html' import render_pagination %}
 
@@ -22,8 +22,6 @@
                 $('.table').DataTable();
             });
         </script>
-
-
 
     {% endblock %}
 </div>

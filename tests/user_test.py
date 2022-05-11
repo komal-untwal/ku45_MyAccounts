@@ -25,17 +25,17 @@ def test_adding_user(application):
         # asserting that the user retrieved is correct
         assert user.email == 'keith@webizly.com'
         # this is how you get a related record ready for insert
-        user.accounts = [Accounts('2000', "Credit"), Accounts('-1000', "debit")]
+        user.accounts = [Accounts(2000, "Credit"), Accounts(-1000, "debit")]
         # commit is what saves the accounts
         db.session.commit()
         assert db.session.query(Accounts).count() == 2
-        account1 = Accounts.query.filter_by(amount='2000').first()
-        assert account1.amount == '2000'
+        account1 = Accounts.query.filter_by(amount=2000).first()
+        assert account1.amount == 2000
         # changing the amount
-        account1.amount = '500'
+        account1.amount = 500
         db.session.commit()
-        account2 = Accounts.query.filter_by(amount='500').first()
-        assert account2.amount == '500'
+        account2 = Accounts.query.filter_by(amount=500).first()
+        assert account2.amount == 500
         # checking cascade delete
         db.session.delete(user)
         assert db.session.query(User).count() == 0
