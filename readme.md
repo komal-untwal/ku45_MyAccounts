@@ -10,12 +10,12 @@
 * [Developmental Deployment](https://my-accounts-dev.herokuapp.com/)
 
 
-## Project Description
-This application allows users to log in and upload a CSV of their song playlist and have it displayed on the dashboard.
-Functionality Implemented: 
-*log files generation with an entry for each time a user uploads a CSV playlist & for each request response with details. 
-*A database record is generated related to each user record for each song in their playlist & fields includes song's title, artist, year, and genre. 
-*Testcases for user login, registration, file upload, dashboard access for a logged-in user, denied access to the dashboard & CSV file upload for non-authenticated users are implemented.
+## Project Description : User Transaction Management
+This application allows users to log in and upload a CSV of their accounts transactions and have it displayed on the dashboard.   
+Functionality Implemented:   
+*log files generation with an entry for each time a user uploads a account transaction CSV, for balance update & for each request response with details.   
+*A database record is generated related to each user record for each transactions in their accounts & fields includes transaction Amount, & Type stating debit or credit transactions.   
+*Testcases for user login, registration, file upload, balance update & calculation,dashboard access for a logged-in user, denied access to the dashboard & CSV file upload for non-authenticated users are implemented.   
 
 
 ## Setting up CI/CD
