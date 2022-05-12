@@ -62,7 +62,7 @@ def accounts_upload():
         user = current_user
         list_of_accounts = []
         with open(filepath) as file:
-            #field_names = ['AMOUNT', 'TYPE']
+            # field_names = ['AMOUNT', 'TYPE']
             csv_file = csv.DictReader(file)
             for row in csv_file:
                 # print(row)
@@ -71,14 +71,17 @@ def accounts_upload():
                 db.session.add(transaction)
                 balance = balance + float(transaction.amount)
 
+
         user.accounts = list_of_accounts
         user.balance = balance
+        log = logging.getLogger("userBalance")
+        log.info('User Balance Updated successful!')
         db.session.commit()
 
         return redirect(url_for('accounts.total_balance'))
 
-    #user_obj = User.query.get(current_user.id)
-    #user_bal = user_obj.balance
+    # user_obj = User.query.get(current_user.id)
+    # user_bal = user_obj.balance
 
     try:
         return render_template('upload.html', form=form)

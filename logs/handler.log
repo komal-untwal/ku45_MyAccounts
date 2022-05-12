@@ -79,3 +79,9 @@
 2022-05-11 06:25:25,666 [INFO] flask_wtf.csrf: The CSRF token is missing.
 2022-05-11 06:25:25,789 [INFO] flask_wtf.csrf: The CSRF token is missing.
 2022-05-11 06:25:26,018 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2022-05-11 21:36:58,784 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2022-05-11 21:36:58,909 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2022-05-11 21:36:59,133 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2022-05-11 21:37:40,737 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2022-05-11 21:37:40,867 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2022-05-11 21:37:41,092 [INFO] flask_wtf.csrf: The CSRF token is missing.

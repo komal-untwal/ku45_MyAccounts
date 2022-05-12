@@ -133,6 +133,13 @@ LOGGING_CONFIG = {
             'maxBytes': 10000000,
             'backupCount': 5,
         },
+        'file.handler.userBalance': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'formatter': 'standard',
+            'filename': os.path.join(config.Config.LOG_DIR, 'userBalanceUpdate.log'),
+            'maxBytes': 10000000,
+            'backupCount': 5,
+        },
     },
     'loggers': {
         '': {  # root logger
@@ -172,6 +179,11 @@ LOGGING_CONFIG = {
         },
         'csvUploads': {  # if __name__ == '__main__'
             'handlers': ['file.handler.csvUploads'],
+            'level': 'DEBUG',
+            'propagate': False
+        },
+        'userBalance': {  # if __name__ == '__main__'
+            'handlers': ['file.handler.userBalance'],
             'level': 'DEBUG',
             'propagate': False
         },
